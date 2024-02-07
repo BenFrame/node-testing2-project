@@ -4,7 +4,8 @@ module.exports = {
     
     getAll,
     getById,
-    insert
+    insert, 
+    remove
   }
 
 function getAll() {
@@ -21,4 +22,10 @@ async function insert(car){
     return await db('cars').insert(car).then(([id]) => {
         return db('cars').where('id', id).first()
     })
+}
+
+function remove(id){
+    return db('cars')
+    .where({id})
+    .del()
 }

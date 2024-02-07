@@ -33,3 +33,11 @@ describe('[POST] /cars', () => {
         expect(res.body).toMatchObject(ferrari)
     })
 })
+
+describe('[DELETE] /cars', () => {
+   test('succesfully deletes a car', async () => {
+    await request(server).delete('/cars/4');
+    const remainingCars = await db('cars');
+    expect(remainingCars).toHaveLength(3);
+   }) 
+})

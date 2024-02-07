@@ -25,4 +25,9 @@ server.get("/cars", (req, res) => {
     res.status(201).json(thing)
   })
 
+  server.delete("/cars/:id", async (req, res) => {
+    const { id } = req.params;
+    const deletedCount = await Cars.remove(id);
+      res.json(deletedCount)
+  });
   module.exports = server
